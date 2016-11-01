@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
 	
- #before_action :set_admin
+ before_action :set_admin
   def index
   end
 
