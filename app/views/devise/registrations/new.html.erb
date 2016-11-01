@@ -21,11 +21,10 @@
     <%= f.label :fecha_nac, "Fecha de Nacimiento" %><br />
     <%= f.date_field :fecha_nac %>
   </div>
-  <div class="field">
-    <%= f.label :sexo %><br />
-    <%= f.text_field :sexo, autofocus: true %>
+ <div class="field">
+    <%= f.label :sexo%>
+    <%=f.select :sexo, [['Masculino', 'Masculino'], ['Femenino', 'Femenino']]%>
   </div>
-
   <div class="field">
     <%= f.label :password, "Contraseña" %>
     <% if @minimum_password_length %>
