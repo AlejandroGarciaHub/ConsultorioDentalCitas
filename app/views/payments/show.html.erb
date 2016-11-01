@@ -1,0 +1,17 @@
+<div class="top-formulario row center-xs text-center">
+  <div class="col-xs-8 col-md-8 col-md-offset-2" style="margin-top: 5em;">
+
+<%= form_for([@appointment,@payment]) do |f| %>
+<div class="field campos-texto">
+    <%= f.label :costo_total %><br>
+    <%= f.text_field :costo_total, disabled:"disabled" %>
+  </div>
+  <div class="field campos-texto">
+	  <%=f.label :tipo_pago %>  	  
+	  <%=f.text_field :tipo_pago, disabled:"disabled" %>  	
+  </div>
+<%end%>
+<%= link_to 'Editar', edit_appointment_payment_path(@payment.appointment,@payment) %> |
+<%= link_to 'Volver', appointment_payments_path %>
+</div>
+</div>

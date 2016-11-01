@@ -1,0 +1,31 @@
+<div class="top-formulario row center-xs text-center">
+  <div class="col-xs-8 col-md-8 col-md-offset-2">
+<h1>Pagos cita</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Costo</th>
+      <th>Tipo pago</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @appointment.payments.each do |payment| %>
+      <tr>
+        <td><%= payment.costo_total %></td>
+        <td><%= payment.tipo_pago %></td>
+        <td><%= link_to 'Mostrar', appointment_payment_path(payment.appointment,payment) %></td>
+        <td><%= link_to 'Editar', edit_appointment_payment_path(payment.appointment,payment) %></td>
+        <td><%= link_to 'Eliminar', [payment.appointment,payment], method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nuevo pago', new_appointment_payment_path %>
+</div>
+</div>

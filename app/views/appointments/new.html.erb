@@ -1,0 +1,12 @@
+<div class="top-formulario row center-xs text-center">
+  <div class="col-xs-8 col-md-8 col-md-offset-2">
+<h1>Nueva Cita</h1>
+
+<%= render 'form' %>
+<% if current_user.try(:admin?)%>
+  <%= link_to 'Volver', appointments_path %>
+<%else%>
+  <%= link_to 'Volver', historial_appointments_path %>
+<%end%>
+</div>
+</div>

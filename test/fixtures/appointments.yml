@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fecha_programada: 2016-10-27
+  finalizada: false
+  aceptada: false
+
+two:
+  fecha_programada: 2016-10-27
+  finalizada: false
+  aceptada: false

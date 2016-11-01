@@ -1,0 +1,47 @@
+<div class="top-formulario row center-xs text-center">
+  <div class="col-xs-8 col-md-8 col-md-offset-2">
+
+<h1>Mi historial de citas</h1>
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Fecha cita</th>
+      <th>Hora cita</th>
+      <th>Finalizada</th>
+      <th>Aceptada</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @appointments.each do |appointment| %>
+      <% if appointment.user==current_user%>
+              <tr>
+        <td><%= appointment.fecha_programada.strftime('%d-%m-%Y') %></td>
+        <td><%= appointment.hora_programada.strftime('%I:%M %p') %></td>
+        <% if appointment.finalizada? %>
+          <td>Si</td>
+        <%else%>
+          <td>No</td>
+        <%end%>
+        <% if appointment.aceptada? %>
+          <td>Si</td>
+        <%else%>
+          <td>No</td>
+        <%end%>
+        <td><%= link_to 'Mostrar', appointment %></td>
+        <%end%>          
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%if @pendientes.size==0%>
+<%= link_to 'Nueva cita', new_appointment_path %>
+<%end%>
+</div>
+</div>

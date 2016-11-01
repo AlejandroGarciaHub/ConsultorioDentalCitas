@@ -1,0 +1,99 @@
+<div class="row center-xs text-center">
+  <div class="col-xs-8 col-md-4 col-md-offset-4">
+      <div class=" col s12">
+      <ul class="tabs" style="margin-top: 6em;">
+        <li class="tab col s3"><a class="active" href="#cuenta">Cuenta</a></li>
+        <li class="tab col s3"><a  href="#personales">Datos Personales</a></li>
+      </ul>
+      </div>
+      <div id="cuenta" class="col s12">
+        
+        <h3>Editar cuenta</h3>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Esperando confirmacion para: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :password, "Contraseña" %> <i>( deja en blanco si no deseas cambiarla)</i><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> caracteres minimo</em>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, "Confirmar contraseña" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :current_password, "Contraseña actual"%> <i>(necesitamos tu contraseña actual para confirmar los cambios)</i><br />
+    <%= f.password_field :current_password, autocomplete: "off" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Actualizar" %>
+  </div>
+<% end %>
+
+<h4>Cancelar mi cuenta</h4>
+
+<p>¿Inconforme? <%= button_to "Cancelar mi cuenta", registration_path(resource_name), data: { confirm: "¿Estas seguro?" }, method: :delete %></p>
+      </div>
+
+
+<div id="personales" class="col s12">
+        <h3>Editar datos personales</h3>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :nombre %><br />
+    <%= f.text_field :nombre, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :apellidos %> 
+    <%= f.text_field :apellidos %>
+  </div>
+
+  <div class="field">
+    <%= f.label :fecha_nac, "Fecha Nacimiento" %><br />
+    <%= f.date_field :fecha_nac%>
+  </div>
+
+  <div class="field">
+    <%= f.label :sexo%>
+    <%=f.select :sexo, [['Masculino', 'Masculino'], ['Femenino', 'Femenino']]%>
+  </div>
+
+   <div class="field">
+    <%= f.label :current_password, "Contraseña actual"%> <i>(necesitamos tu contraseña actual para confirmar los cambios)</i><br />
+    <%= f.password_field :current_password, autocomplete: "off" %>
+  </div> 
+
+  <div class="actions">
+    <%= f.submit "Actualizar" %>
+  </div>
+<% end %>
+
+</div>
+
+<div style="margin-bottom: 10%;">
+  <%= link_to "Regresar", :back %>
+
+</div>
+  
+</div>
+</div>

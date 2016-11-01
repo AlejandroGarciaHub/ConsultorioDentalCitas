@@ -1,0 +1,18 @@
+<div class="top-formulario row center-xs text-center">
+  <div class="col-xs-8 col-md-8 col-md-offset-2">
+
+<h3>Resumen Tratamiento</h3>
+<%= form_for([@appointment,@appointments_procedure]) do |f| %>
+<div class="field campos-texto">
+    <%= f.label :procedure_id, "Tratamiento" %><br>
+    <%= @appointments_procedure.procedure.nombre%>
+  </div>
+  <strong>Anotaciones:</strong>
+  <%= @appointments_procedure.anotaciones %>
+<%end%>
+
+<%= link_to 'Editar', edit_appointment_appointments_procedure_path(@appointment,@appointments_procedure) %> |
+<%= link_to 'Volver', appointment_appointments_procedures_path %>
+
+</div>
+</div>

@@ -1,0 +1,34 @@
+<%= form_for(@appointment) do |f| %>
+  <% if @appointment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
+
+      <ul>
+      <% @appointment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field campos-texto">
+    <%= f.label :fecha_programada %><br>
+    <%= f.date_field :fecha_programada %>
+  </div>
+
+  <div class="field campos-texto">
+    <%= f.label :hora_programada %><br>
+    <%= f.time_field :hora_programada%>
+  </div>
+
+  <% if current_user.try(:admin?)%>
+      <div class="field campos-texto">
+        <%= f.check_box :aceptada %>
+        <%= f.label :aceptada %><br>
+      </div>
+
+  <%end%>
+  <div class="actions top-formulario">
+    <%= f.submit "Programar cita"%>
+  </div>
+<% end %>

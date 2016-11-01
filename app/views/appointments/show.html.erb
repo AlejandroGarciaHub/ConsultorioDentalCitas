@@ -1,0 +1,75 @@
+
+<div class="top-formulario row center-xs text-center">
+  <div class="col-xs-12 col-md-12 ">
+
+  <h2>Resumen cita</h2>
+ <%= form_for (@appointment) do |f|%>
+
+ <div class="field campos-texto">
+ 	<%= f.label :fecha_programada%>
+ 	<%= f.date_field :fecha_programada, disabled:"disabled"%>
+ </div>
+
+   <div class="field campos-texto">
+    <%= f.label :hora_programada %><br>
+    <%= f.time_field :hora_programada, disabled:"disabled" %>
+  </div>
+
+ <div class="field">
+  	<%= f.check_box :aceptada, disabled:"disabled"%>
+ 	<%= f.label :aceptada%>
+ </div>
+
+ <div class="field">
+ 	<%= f.check_box :finalizada, disabled:"disabled"%>
+ 	<%= f.label :finalizada%>
+ </div>
+ <%end%>
+
+  <% if current_user.try(:admin?)%>
+<h4>Tratamientos</h4>
+<div class="row">
+<%= link_to 'Mostrar todos', appointment_appointments_procedures_path(@appointment.id), class:"waves-effect waves-light btn" %>
+	<%= link_to "Añadir", new_appointment_appointments_procedure_path(@appointment.id), class:"waves-effect waves-light btn"%>
+  </div>
+ <%end%>
+
+ <ul class="collapsible campos-texto" style="margin-top: 3em;" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header active"><i class="material-icons">filter_drama</i>Pagos realizados - <%=@appointment.payments.count%></div>
+      <div class="collapsible-body">
+      <table>
+  <thead>
+    <tr>
+      <th>Costo</th>
+      <th>Tipo Pago</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+        <% @appointment.payments.each do |payment| %>
+              <tr>
+        <td>$ <%= payment.costo_total %></td>
+          <td><%= payment.tipo_pago %></td>
+        <td><%= link_to 'Mostrar', appointment_payment_path(@appointment,payment) %></td>
+        <td><%= link_to 'Editar', edit_appointment_payment_path(@appointment,payment) %></td>
+        <td><%= link_to 'Eliminar', [@appointment,payment], method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%end%>          
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+    </li>
+  </ul>
+       
+
+<%= link_to 'Editar', edit_appointment_path(@appointment) %> |
+<% if current_user.try(:admin?)%>
+  <%= link_to 'Volver', appointments_path %>
+<%else%>
+  <%= link_to 'Volver', historial_appointments_path %>
+<%end%>
+</div>
+</div>

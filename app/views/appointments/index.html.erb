@@ -1,0 +1,46 @@
+<div class="top-formulario row center-xs text-center">
+  <div class="col-xs-8 col-md-8 col-md-offset-2">
+
+<h1>Historial de Citas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Paciente</th>
+      <th>Fecha programada</th>
+      <th>Hora programada</th>
+      <th>Finalizada</th>
+      <th>Aceptada</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @appointments.each do |appointment| %>
+      <tr>
+        <td><%= appointment.user.nombre%> <%= appointment.user.apellidos%></td>
+        <td><%= appointment.fecha_programada.strftime('%d-%m-%Y') %></td>
+        <td><%= appointment.hora_programada.strftime('%I:%M %p') %></td>
+        <% if appointment.finalizada? %>
+          <td>Si</td>
+        <%else%>
+          <td>No</td>
+        <%end%>
+        <% if appointment.aceptada? %>
+          <td>Si</td>
+        <%else%>
+          <td>No</td>
+        <%end%>
+        <td><%= link_to 'Mostrar', appointment %></td>
+        <td><%= link_to 'Editar', edit_appointment_path(appointment) %></td>
+        <td><%= link_to 'Eliminar', appointment, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nueva cita', new_appointment_path %>
+</div>
+</div>

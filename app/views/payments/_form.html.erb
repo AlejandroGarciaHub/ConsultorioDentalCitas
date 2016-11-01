@@ -1,0 +1,26 @@
+<%= form_for([@appointment,@payment]) do |f| %>
+  <% if @payment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@payment.errors.count, "error") %> prohibited this payment from being saved:</h2>
+
+      <ul>
+      <% @payment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field campos-texto">
+    <%= f.label :costo_total %><br>
+    <%= f.number_field :costo_total %>
+  </div>
+  <div class="field campos-texto">
+    <% f.label :tipo_pago %><br>
+    <%=f.select :tipo_pago, [['Tarjeta Credito/Debito', 'Tarjeta Credito/Debito'], ['Efectivo', 'Efectivo']]%>
+
+  </div>
+  <div class="actions">
+    <%= f.submit "Actualizar"%>
+  </div>
+<% end %>
