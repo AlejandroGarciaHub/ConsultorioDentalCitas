@@ -13,7 +13,7 @@
 
   <div class="field campos-texto">
     <%= f.label :fecha_programada %><br>
-    <%= f.date_field :fecha_programada %>
+    <%= f.date_field :fecha_programada,  class:"input-group datepicker" %>
   </div>
 
   <div class="field campos-texto">
@@ -27,6 +27,13 @@
         <%= f.label :aceptada %><br>
       </div>
 
+  <%end%>
+
+  <%if @appointment.aceptada==true%>
+  <div class="field campos-texto">
+        <%= f.check_box :finalizada %>
+        <%= f.label :finalizada %><br>
+      </div>
   <%end%>
   <div class="actions top-formulario">
     <%= f.submit "Programar cita"%>

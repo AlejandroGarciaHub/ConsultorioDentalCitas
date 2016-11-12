@@ -3,6 +3,9 @@
 <h1>Tratamientos Ofrecidos</h1>
 
 
+  <% if current_user.try(:admin?)%>
+<%= link_to 'Agregar Nuevo Tratamiento', new_procedure_path %>
+<%end%>
 <br>
   <% @procedures.each do |procedure| %>
   <h4><%= procedure.nombre %></h4>
@@ -11,7 +14,7 @@
         <div class="card-panel teal white-text">
           <tr>
         
-        <td><%= procedure.descripcion %></td>   
+        <td><%= procedure.descripcion %></td>  
         
       </tr>
         </div>
@@ -20,11 +23,10 @@
         <td><%= link_to 'Editar', edit_procedure_path(procedure) %></td>
         <td><%= link_to 'Eliminar', procedure, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <%end%>
+        <td>Costo: $<%= procedure.costo%></td> 
       </div>
     </div>
+
   <%end%>
-  <% if current_user.try(:admin?)%>
-<%= link_to 'Agregar Nuevo Tratamiento', new_procedure_path %>
-<%end%>
 </div>
 </div>

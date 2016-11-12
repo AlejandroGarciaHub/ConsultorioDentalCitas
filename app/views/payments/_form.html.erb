@@ -10,7 +10,11 @@
       </ul>
     </div>
   <% end %>
-
+<%total=0%>
+    <%@appointment_procedures.each do |pago|%>
+      <%total+=pago.procedure.costo%>
+  <%end%>
+  <strong>Total a pagar: <%=total%></strong>
   <div class="field campos-texto">
     <%= f.label :costo_total %><br>
     <%= f.number_field :costo_total %>

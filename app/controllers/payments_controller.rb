@@ -12,11 +12,24 @@ class PaymentsController < ApplicationController
   # GET /payments/1.json
   def show
      @appointment = Appointment.find(params[:appointment_id])
+     respond_to do |format|
+      format.html
+      format.pdf do
+      render  pdf: "Recibo",  
+      title:                          'Recibo',            # otherwise first page title is used
+               margin:  {   top:               50,                     # default 10 (mm)
+                            bottom:            50,
+                            left:              70,
+                            right:             40 },
+      template: "payments/show.html.erb"
+    end
+    end
   end
 
   # GET /payments/new
   def new
     @appointment = Appointment.find(params[:appointment_id])
+    @appointment_procedures=AppointmentsProcedure.where(appointment_id: @appointment.id)
     @payment = Payment.new
   end
 

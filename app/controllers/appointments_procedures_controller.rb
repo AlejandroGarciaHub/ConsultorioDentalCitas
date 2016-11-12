@@ -5,7 +5,7 @@ class AppointmentsProceduresController < ApplicationController
   # GET /appointments_procedures
   # GET /appointments_procedures.json
   def index
-    @appointments_procedures = AppointmentsProcedure.all
+    @appointments_procedures = AppointmentsProcedure.where(appointment_id: @appointment.id)
   end
 
   # GET /appointments_procedures/1

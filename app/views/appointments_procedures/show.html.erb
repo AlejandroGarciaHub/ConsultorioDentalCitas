@@ -2,8 +2,10 @@
   <div class="col-xs-8 col-md-8 col-md-offset-2">
 
 <h3>Resumen Tratamiento</h3>
-<%= form_for([@appointment,@appointments_procedure]) do |f| %>
+<%=	form_for([@appointment,@appointments_procedure]) do |f| %>
 <div class="field campos-texto">
+<strong>Paciente:</strong>
+  <%= @appointments_procedure.appointment.user.nombre	 %><br>
     <%= f.label :procedure_id, "Tratamiento" %><br>
     <%= @appointments_procedure.procedure.nombre%>
   </div>

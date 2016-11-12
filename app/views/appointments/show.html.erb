@@ -27,11 +27,25 @@
  <%end%>
 
   <% if current_user.try(:admin?)%>
+
+<%if @appointment.finalizada==false%>
+<%= link_to 'Editar', edit_appointment_path(@appointment) %> | 
+<%end%>
+ <%= link_to 'Volver', appointments_path %>
+ <%else%>
+  <%= link_to 'Volver', historial_appointments_path %>
+<%end%>
+  <% if current_user.try(:admin?)%>
 <h4>Tratamientos</h4>
 <div class="row">
 <%= link_to 'Mostrar todos', appointment_appointments_procedures_path(@appointment.id), class:"waves-effect waves-light btn" %>
+<%if @appointment.finalizada==false%>
 	<%= link_to "Añadir", new_appointment_appointments_procedure_path(@appointment.id), class:"waves-effect waves-light btn"%>
+  <%else%>
+  <%= link_to "Generar recibo de pago", new_appointment_payment_path(@appointment.id), class:"waves-effect waves-light btn red"%>
+<%end%>
   </div>
+
  <%end%>
 
  <ul class="collapsible campos-texto" style="margin-top: 3em;" data-collapsible="accordion">
@@ -65,11 +79,5 @@
   </ul>
        
 
-<%= link_to 'Editar', edit_appointment_path(@appointment) %> |
-<% if current_user.try(:admin?)%>
-  <%= link_to 'Volver', appointments_path %>
-<%else%>
-  <%= link_to 'Volver', historial_appointments_path %>
-<%end%>
 </div>
 </div>

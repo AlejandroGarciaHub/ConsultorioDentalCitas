@@ -2,6 +2,12 @@
   <div class="col-xs-8 col-md-8 col-md-offset-2" style="margin-top: 5em;">
 
 <%= form_for([@appointment,@payment]) do |f| %>
+<h3>Recibo de pago</h3>
+<div class="field campos-texto">
+<%=label_tag "Nombre del paciente:"%><br>
+   <%=@payment.appointment.user.nombre_completo%>
+  </div>
+
 <div class="field campos-texto">
     <%= f.label :costo_total %><br>
     <%= f.text_field :costo_total, disabled:"disabled" %>
@@ -11,7 +17,13 @@
 	  <%=f.text_field :tipo_pago, disabled:"disabled" %>  	
   </div>
 <%end%>
+<% unless request.format.to_sym == :pdf %>
 <%= link_to 'Editar', edit_appointment_payment_path(@payment.appointment,@payment) %> |
 <%= link_to 'Volver', appointment_payments_path %>
+<div class="field">
+<%= link_to "Descargar", appointment_payment_path(format: :pdf)%>
+	
+</div>
+<% end %>
 </div>
 </div>
