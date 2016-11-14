@@ -1,15 +1,5 @@
 <%= form_for([@appointment,@appointments_procedure]) do |f| %>
-  <% if @appointments_procedure.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@appointments_procedure.errors.count, "error") %> prohibited this appointments_procedure from being saved:</h2>
 
-      <ul>
-      <% @appointments_procedure.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
 <div class="field campos-texto">
     <%= f.label :procedure_id, "Tratamiento" %><br>

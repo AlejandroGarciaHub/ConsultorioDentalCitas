@@ -34,6 +34,7 @@
         <%else%>
           <td>No</td>
         <%end%>
+        <td><%= link_to 'Eliminar', appointment, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
         <td><%= link_to 'Mostrar', appointment %></td>
         <%if appointment.finalizada==false%>
         <td><%= link_to 'Editar', edit_appointment_path(appointment) %></td>
